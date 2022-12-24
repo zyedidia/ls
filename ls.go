@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"golang.org/x/crypto/ssh/terminal"
 	"io/ioutil"
 	"math"
 	"os"
@@ -13,6 +12,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 // Base set of color codes for colorized output
@@ -768,11 +769,13 @@ func write_listings_to_buffer(output_buffer *bytes.Buffer,
 			output_buffer.WriteString(" ")
 
 			// group
-			output_buffer.WriteString(l.group)
-			for i := 0; i < width_group-len(l.group); i++ {
+			if false {
+				output_buffer.WriteString(l.group)
+				for i := 0; i < width_group-len(l.group); i++ {
+					output_buffer.WriteString(" ")
+				}
 				output_buffer.WriteString(" ")
 			}
-			output_buffer.WriteString(" ")
 
 			// size
 			for i := 0; i < width_size-len(l.size); i++ {
